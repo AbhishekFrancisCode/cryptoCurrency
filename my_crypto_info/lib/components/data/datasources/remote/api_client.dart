@@ -43,7 +43,7 @@ class ApiClient {
     Future<OrderBook> getCryptoOrderBook(String q) async {
     final url = Uri.parse("https://www.bitstamp.net/api/v2/order_book/$q");
     final response = await http.get(url);
-    var data = jsonDecode(response.body.toString());
+    var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       return OrderBook.fromJson(data);
     } else {

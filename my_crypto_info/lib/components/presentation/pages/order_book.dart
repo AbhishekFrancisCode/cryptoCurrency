@@ -1,4 +1,5 @@
 import 'package:cryptodata/components/presentation/bloc/order_book_bloc.dart';
+import 'package:cryptodata/components/presentation/widgets/order_book_list.dart';
 import 'package:cryptodata/components/presentation/widgets/progress_indicator_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/show_error_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,10 @@ class _ShowHideDemoState extends State<ShowHideDemo> {
     });
   }
 
+  // var time = const Duration();
+  //  Timer.periodic(time, (timer) => {}
+  //  );
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -33,29 +38,50 @@ class _ShowHideDemoState extends State<ShowHideDemo> {
       child:
           BlocBuilder<OrderBookBloc, OrderBookState>(builder: (context, state) {
         if (state is OrderBookLoaded) {
+          context.read<OrderBookBloc>().add(OnRefreshProductList());
           final list = state.list;
+          final product = list;
           return Container(
-            color: Colors.blueGrey,
+            // color: Colors.blueGrey,
             child: state.isLoading
                 ? ProgressIndicatorWidget()
-                : SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        TextButton(
-                            onPressed: showToast,
-                            child: Text("VIEW ORDER BOOK")),
-                        Visibility(
-                            visible: _isVisible,
-                            child: ListTile(
-                                      leading: Text('${list.bids[0]}',
-                                    style: TextStyle(color: Colors.green),
-                                  ))
-                                ),
-                        // SizedBox(
-                        //   height: 35,
-                        // ),
-                      ],
-                    ),
+                : Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 30.0),
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                              onPressed: showToast,
+                              child: _isVisible == false
+                                  ? Text("VIEW ORDER BOOK")
+                                  : Text("HIDE ORDER BOOK")),
+                        ),
+                      ),
+                      Visibility(
+                          visible: _isVisible,
+                          child: Column(children: [
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text("BID PRICE"),
+                                  Text("      QTY     "),
+                                  Text("      QTY     "),
+                                  Text("ASK PRICE"),
+                                ]),
+                            SizedBox(height: 30),
+                            ListView.separated(
+                              itemBuilder: (BuildContext, index) {
+                                return OrderBookListItem(
+                                    product, searchTerm, index);
+                              },
+                              itemCount: 5,
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) => Divider(),
+                            ),
+                          ]))
+                    ],
                   ),
           );
         } else if (state is OrderBookError) {
@@ -65,7 +91,7 @@ class _ShowHideDemoState extends State<ShowHideDemo> {
                 context.read<OrderBookBloc>().add(OnOrderBook(searchTerm)),
           );
         }
-        return ProgressIndicatorWidget();
+        return Container();
       }),
     );
   }

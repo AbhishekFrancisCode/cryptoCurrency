@@ -1,8 +1,6 @@
 //Events
-import 'package:cryptodata/components/data/models/crypto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cryptodata/core/error/failure.dart';
-import 'package:cryptodata/components/domain/repositories/remote_repository.dart';
 
 abstract class CryptoListEvent {}
 

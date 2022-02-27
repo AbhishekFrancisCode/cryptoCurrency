@@ -11,7 +11,7 @@ class OnSearch extends SearchEvent {
   OnSearch(this.term);
 }
 
-class OnRefreshProductList extends SearchEvent {}
+class OnRefreshSearchtList extends SearchEvent {}
 
 //States
 abstract class SearchState {}
@@ -39,11 +39,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       try {
         final term = event.term.trim();
         final response = await RemoteRepository().getCryptoBySearch(term);
-        emit(SearchLoaded(response));
+        yield SearchLoaded(response);
       } on Failure catch (e) {
         yield SearchError(e.message);
       }
-    } else if (event is OnRefreshProductList) {
+    } else if (event is OnRefreshSearchtList) {
       if (_currentState is SearchLoaded) {
         yield SearchLoaded(_currentState.list);
       }

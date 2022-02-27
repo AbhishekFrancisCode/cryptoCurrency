@@ -34,9 +34,22 @@ class MySearchPage extends StatelessWidget {
                     Container(
                       child: state.isLoading
                           ? ProgressIndicatorWidget()
-                          : SearchListItem(product,searchTerm),
+                          : SearchListItem(product, searchTerm),
                     ),
                     SingleChildScrollView(child: ShowHideDemo(searchTerm)),
+                    Container(
+                      padding: EdgeInsets.all(30),
+                      alignment: Alignment.bottomRight,
+                      child: FloatingActionButton(
+                          // isExtended: true,
+                          child: Icon(Icons.refresh),
+                          backgroundColor: Colors.blue,
+                          onPressed: () {
+                            context
+                                .read<SearchBloc>()
+                                .add(OnRefreshSearchtList());
+                          }),
+                    ),
                   ],
                 );
               } else if (state is SearchError) {
