@@ -1,13 +1,13 @@
 //Events
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_crypto_info/components/data/datasource/local/db_manager.dart';
-import 'package:my_crypto_info/core/error/failure.dart';
+import 'package:cryptodata/components/data/datasources/local/db_manager.dart';
+import 'package:cryptodata/core/error/failure.dart';
 
 abstract class StartEvent {}
 
 class OnLoadStart extends StartEvent {
-  int tabPosition;
-  OnLoadStart([this.tabPosition = 0]);
+  int tabPosition = 0;
+  OnLoadStart([this.tabPosition]);
 }
 
 //States

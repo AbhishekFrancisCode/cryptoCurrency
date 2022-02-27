@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProgressIndicatorWidget extends StatelessWidget {
   final String message;
-  final double? height;
+  final double height;
 
   ProgressIndicatorWidget(
       {this.message = "Loading, please wait...", this.height});

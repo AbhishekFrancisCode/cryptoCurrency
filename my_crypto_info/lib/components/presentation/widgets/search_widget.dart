@@ -4,7 +4,7 @@ class SearchWidget extends StatefulWidget {
   final String title;
   final ValueChanged<String> onTextChanged;
 
-  const SearchWidget({required this.title, required this.onTextChanged});
+  const SearchWidget({this.title, this.onTextChanged});
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState(this.onTextChanged);

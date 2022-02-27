@@ -2,11 +2,16 @@ buildscript {
     ext.kotlin_version = '1.6.10'
     repositories {
         google()
-        mavenCentral()
+        jcenter()
+        maven {
+            url 'http://storage.googleapis.com/r8-releases/raw'
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        //classpath 'com.android.tools:r8:2.1.75'
+        classpath 'com.google.gms:google-services:4.3.2'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -14,15 +19,13 @@ buildscript {
 allprojects {
     repositories {
         google()
-        mavenCentral()
+        jcenter()
     }
 }
 
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(':app')
 }
 

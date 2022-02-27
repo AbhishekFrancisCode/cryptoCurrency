@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ShowErrorWidget extends StatelessWidget {
   final String message;
-  final double? height;
-  final VoidCallback? onPressed;
+  final double height;
+  final VoidCallback onPressed;
 
   ShowErrorWidget(this.message, {this.height, this.onPressed});
 
