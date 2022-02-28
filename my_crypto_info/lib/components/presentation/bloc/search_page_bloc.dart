@@ -6,12 +6,16 @@ import 'package:cryptodata/components/domain/repositories/remote_repository.dart
 
 abstract class SearchEvent {}
 
+var term;
 class OnSearch extends SearchEvent {
-  final String term;
+  String term;
   OnSearch(this.term);
 }
 
-class OnRefreshSearchtList extends SearchEvent {}
+class OnRefreshSearchtList extends SearchEvent {
+  String term;
+  OnRefreshSearchtList(this.term);
+}
 
 //States
 abstract class SearchState {}
@@ -39,13 +43,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       try {
         final term = event.term.trim();
         final response = await RemoteRepository().getCryptoBySearch(term);
-        yield SearchLoaded(response);
+        yield SearchLoaded(response.data);
       } on Failure catch (e) {
         yield SearchError(e.message);
       }
     } else if (event is OnRefreshSearchtList) {
       if (_currentState is SearchLoaded) {
-        yield SearchLoaded(_currentState.list);
+        final response = await RemoteRepository().getCryptoBySearch(event.term);
+        yield SearchLoaded(response.data);
       }
     }
   }

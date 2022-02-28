@@ -84,6 +84,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/config.json
     - assets/image/splash.jpg
     - assets/currencyPair.json
     - assets/image/Cryptocurrency_Logo.png

@@ -10,7 +10,7 @@ class ProductListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue[200],
+      color: Colors.blue[100],
       alignment: Alignment.center,
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

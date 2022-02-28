@@ -26,6 +26,6 @@ test("Testing the network call", () async{
     return Response(json.encode(mapJson),200);
   });
   final item = await apiProvider.getCryptoBySearch("btcusd");
-  expect(item.last, String);
+  expect(item, String);
 });
 }

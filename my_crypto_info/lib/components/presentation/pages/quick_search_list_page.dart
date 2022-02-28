@@ -4,6 +4,7 @@ import 'package:cryptodata/components/presentation/widgets/product_list_item.dar
 import 'package:cryptodata/components/presentation/widgets/progress_indicator_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/search_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/show_error_widget.dart';
+import 'package:cryptodata/core/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,7 @@ class MyCryptoListPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Crypto Data"),
-        //backgroundColor: Colors.grey,
+        backgroundColor: config.brandColor,
       ),
       body: Column(children: [
         Expanded(

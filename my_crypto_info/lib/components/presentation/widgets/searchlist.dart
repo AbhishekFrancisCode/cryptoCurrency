@@ -1,8 +1,7 @@
 import 'package:cryptodata/components/data/models/ticker.dart';
-import 'package:flutter/material.dart';
+import 'package:cryptodata/components/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-
+import 'package:flutter/material.dart';
 class SearchListItem extends StatelessWidget {
   final Ticker search;
   final String searchTerm;
@@ -10,8 +9,7 @@ class SearchListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String cdate = DateFormat("dd MMM yyyy").format(DateTime.now());
-    String tdata = DateFormat("hh:mm:ss").format(DateTime.now());
+
     return Container(
         //height: MediaQuery.of(context).size.height,
         // color: Colors.amber,
@@ -26,7 +24,7 @@ class SearchListItem extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
           title: Text(
-            '${cdate}, ${tdata}',
+            '${Utils.getDate()}, ${Utils.getTime()}',
             style: GoogleFonts.josefinSans(fontSize: 15),
             textAlign: TextAlign.right,
           ),

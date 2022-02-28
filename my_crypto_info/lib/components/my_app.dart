@@ -1,4 +1,3 @@
-import 'package:cryptodata/components/presentation/pages/quick_search_list_page.dart';
 import 'package:cryptodata/components/presentation/pages/start_page.dart';
 import 'package:flutter/material.dart';
 

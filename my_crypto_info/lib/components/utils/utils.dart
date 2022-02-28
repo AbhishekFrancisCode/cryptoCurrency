@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 
 class Utils {
@@ -104,5 +105,36 @@ class Utils {
       list.setRange(min + 1, pos + 1, list, min);
       list[min] = element;
     }
+  }
+
+  static String getDate() {
+    String d_data = DateFormat("dd MMM yyyy").format(DateTime.now());
+    return d_data;
+  }
+
+  static String getTime() {
+    String t_data = DateFormat("hh:mm:ss").format(DateTime.now());
+    return t_data;
+  }
+
+  static getRemoveBrackets(String list) {
+    final removedBrackets = list.substring(1, list.length - 1);
+    final parts = removedBrackets.split(', ');
+    return parts;
+  }
+
+  static getRowOfList(
+    String a,
+    String b,
+    String c,
+    String d,
+  ) {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      //SizedBox(height: 20),
+      Text("${a}"),
+      Text("${b}"),
+      Text("${c}"),
+      Text("${d}"),
+    ]);
   }
 }
