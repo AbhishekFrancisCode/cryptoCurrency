@@ -5,32 +5,26 @@ import 'package:cryptodata/components/data/models/crypto.dart';
 import 'package:cryptodata/components/data/models/order_book.dart';
 import 'package:cryptodata/components/data/models/ticker.dart';
 import 'package:cryptodata/components/domain/usecases/api_response.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import '../../../../core/error/failure.dart';
 
 class ApiClient {
-  final http.Client httpClient;
+  http.Client httpClient;
 
-  ApiClient({@required this.httpClient}) : assert(httpClient != null);
+  ApiClient({this.httpClient}) : assert(httpClient != null);
 
   Future<ApiResponse<List<CryptoList>>> getCryptoList() async {
-    final url ="https://www.bitstamp.net/api/v2/trading-pairs-info/";
-     final response = await _getResponse(url);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      final _data = cryptoListFromJson(json.toString());
-      return ApiResponse(data: _data);
-    } else {
-      final code = response.statusCode;
-      throw Failure("Something went wrong ($code). Please retry!");
-    }
+    final path ="assets/currencyPair.json";
+    final jsondata = await rootBundle.loadString(path);
+    final list = json.decode(jsondata) as List<dynamic>;
+      return ApiResponse(data: list.map((e) => CryptoList.fromJson(e)).toList());
   }
 
   Future<Ticker> getCryptoBySearch(String q) async {
-    final url = Uri.parse("https://www.bitstamp.net/api/v2/ticker/$q");
-    final response = await http.get(url);
+    final url = "https://www.bitstamp.net/api/v2/ticker/$q";
+    final response = await _getResponse(url);
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       return Ticker.fromJson(data);
@@ -41,8 +35,8 @@ class ApiClient {
   }
 
     Future<OrderBook> getCryptoOrderBook(String q) async {
-    final url = Uri.parse("https://www.bitstamp.net/api/v2/order_book/$q");
-    final response = await http.get(url);
+    final url = "https://www.bitstamp.net/api/v2/order_book/$q";
+    final response = await _getResponse(url);
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       return OrderBook.fromJson(data);

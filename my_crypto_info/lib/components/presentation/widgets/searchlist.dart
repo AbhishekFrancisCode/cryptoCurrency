@@ -36,14 +36,6 @@ class SearchListItem extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Container(
             width: MediaQuery.of(context).size.width,
-            // decoration: BoxDecoration(
-            //  // color: Colors.grey,
-            //   border: Border.all(
-            //     width: 3.0,
-            //     color: Colors.grey[300],
-            //   ),
-            //   borderRadius: BorderRadius.all(Radius.circular(10)),
-            // ),
             child: Column(
               children: [
                 Padding(
@@ -56,7 +48,7 @@ class SearchListItem extends StatelessWidget {
                             fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${search.open}',
+                        '\$ ${search.open}',
                         style: GoogleFonts.josefinSans(
                             fontSize: 32, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -69,7 +61,7 @@ class SearchListItem extends StatelessWidget {
                             fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${search.high}',
+                        '\$ ${search.high}',
                         style: GoogleFonts.josefinSans(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
@@ -87,7 +79,7 @@ class SearchListItem extends StatelessWidget {
                             fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${search.low}',
+                        '\$ ${search.low}',
                         style: GoogleFonts.josefinSans(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
@@ -99,7 +91,7 @@ class SearchListItem extends StatelessWidget {
                             fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${search.last}',
+                        '\$ ${search.last}',
                         style: GoogleFonts.josefinSans(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
@@ -107,7 +99,7 @@ class SearchListItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.only(top:15),
                   child: ListTile(
                       leading: Column(children: [
                     Text(

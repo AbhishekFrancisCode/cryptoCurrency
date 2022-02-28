@@ -5,30 +5,26 @@ import 'package:cryptodata/components/presentation/widgets/show_error_widget.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ShowHideDemo extends StatefulWidget {
+class MyOrderBook extends StatefulWidget {
   final String searchTerm;
-  const ShowHideDemo(this.searchTerm);
+  const MyOrderBook(this.searchTerm);
 
   @override
-  _ShowHideDemoState createState() {
-    return _ShowHideDemoState(this.searchTerm);
+  _OrderBookState createState() {
+    return _OrderBookState(this.searchTerm);
   }
 }
 
-class _ShowHideDemoState extends State<ShowHideDemo> {
+class _OrderBookState extends State<MyOrderBook> {
   bool _isVisible = false;
   String searchTerm;
-  _ShowHideDemoState(this.searchTerm);
+  _OrderBookState(this.searchTerm);
 
   void showToast() {
     setState(() {
       _isVisible = !_isVisible;
     });
   }
-
-  // var time = const Duration();
-  //  Timer.periodic(time, (timer) => {}
-  //  );
 
   @override
   Widget build(BuildContext context) {

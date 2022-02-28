@@ -11,7 +11,7 @@ class OrderBookListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bid = _getList(search.bids[index].toString());
-    var ask = _getList(search.bids[index].toString());
+    var ask = _getList(search.asks[index].toString());
     return _getRowList(bid[0],bid[1],ask[1],ask[0]);
   }
     _getRowList(
