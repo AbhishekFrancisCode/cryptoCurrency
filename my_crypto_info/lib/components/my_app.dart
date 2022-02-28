@@ -1,5 +1,4 @@
-import 'package:cryptodata/components/presentation/pages/my_product_list.dart';
-import 'package:cryptodata/components/presentation/pages/my_start_page.dart';
+import 'package:cryptodata/components/presentation/pages/start_page.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyCryptoListPage(),
+      home: MyStartPage(),
     );
   }
 }

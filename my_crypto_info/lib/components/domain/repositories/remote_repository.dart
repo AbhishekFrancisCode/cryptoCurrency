@@ -17,6 +17,8 @@ class RemoteRepository {
   Future<ApiResponse<List<CryptoList>>> getCryptoList() =>
       _apiClient.getCryptoList();
 
-  Future<Ticker> getCryptoBySearch(String q) => _apiClient.getCryptoBySearch(q);
-  Future<OrderBook> getCryptoOrderBook(String q) => _apiClient.getCryptoOrderBook(q);
+  Future<ApiResponse<Ticker>> getCryptoBySearch(String q) =>
+      _apiClient.getCryptoBySearch(q);
+  Future<ApiResponse<OrderBook>> getCryptoOrderBook(String q) =>
+      _apiClient.getCryptoOrderBook(q);
 }

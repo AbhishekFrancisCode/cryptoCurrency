@@ -5,47 +5,46 @@ import 'package:cryptodata/components/data/models/crypto.dart';
 import 'package:cryptodata/components/data/models/order_book.dart';
 import 'package:cryptodata/components/data/models/ticker.dart';
 import 'package:cryptodata/components/domain/usecases/api_response.dart';
-import 'package:flutter/widgets.dart';
+import 'package:cryptodata/core/config/config.dart';
+import 'package:cryptodata/core/error/failure.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import '../../../../core/error/failure.dart';
 
 class ApiClient {
-  final http.Client httpClient;
+  http.Client httpClient;
 
-  ApiClient({@required this.httpClient}) : assert(httpClient != null);
+  ApiClient({this.httpClient}) : assert(httpClient != null);
 
   Future<ApiResponse<List<CryptoList>>> getCryptoList() async {
-    final url ="https://www.bitstamp.net/api/v2/trading-pairs-info/";
-     final response = await _getResponse(url);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      final _data = cryptoListFromJson(json.toString());
-      return ApiResponse(data: _data);
-    } else {
-      final code = response.statusCode;
-      throw Failure("Something went wrong ($code). Please retry!");
-    }
+    final path = "assets/currencyPair.json";
+    final jsondata = await rootBundle.loadString(path);
+    final list = json.decode(jsondata) as List<dynamic>;
+    return ApiResponse(data: list.map((e) => CryptoList.fromJson(e)).toList());
   }
 
-  Future<Ticker> getCryptoBySearch(String q) async {
-    final url = Uri.parse("https://www.bitstamp.net/api/v2/ticker/$q");
-    final response = await http.get(url);
+  Future<ApiResponse<Ticker>> getCryptoBySearch(String q) async {
+    q.toLowerCase();
+    final baseUrl = config.baseUrl;
+    final url = "${baseUrl}ticker/$q";
+    final response = await _getResponse(url);
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
-      return Ticker.fromJson(data);
+      return ApiResponse(data: Ticker.fromJson(data));
     } else {
       final code = response.statusCode;
       throw Failure("Something went wrong ($code). Please retry!");
     }
   }
 
-    Future<OrderBook> getCryptoOrderBook(String q) async {
-    final url = Uri.parse("https://www.bitstamp.net/api/v2/order_book/$q");
-    final response = await http.get(url);
+  Future<ApiResponse<OrderBook>> getCryptoOrderBook(String q) async {
+    q.toLowerCase();
+    final baseUrl = config.baseUrl;
+    final url = "${baseUrl}order_book/$q";
+    final response = await _getResponse(url);
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      return OrderBook.fromJson(data);
+      return ApiResponse(data: OrderBook.fromJson(data));
     } else {
       final code = response.statusCode;
       throw Failure("Something went wrong ($code). Please retry!");
@@ -53,8 +52,7 @@ class ApiClient {
   }
 
   Future<Response> _getResponse(String url) async {
-    return await _withRetry(
-        () => httpClient.get(Uri.parse(url)));
+    return await _withRetry(() => httpClient.get(Uri.parse(url)));
   }
 
   Future<http.Response> _withRetry(Future<Response> Function() fn) async {
@@ -71,7 +69,7 @@ class ApiClient {
         } else {
           return response;
         }
-      } on Exception catch (e, s) {
+      } on Exception catch (e) {
         if (canRetry) {
           final duration = Duration(milliseconds: (attempts) * retryDelay);
           await Future.delayed(duration);

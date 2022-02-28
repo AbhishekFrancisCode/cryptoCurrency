@@ -1,28 +1,34 @@
 import 'package:cryptodata/components/data/models/crypto.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ProductListItem extends StatelessWidget {
   final position;
-  final CryptoList product;
+  final List<CryptoList> list;
   final VoidCallback onTap;
-  final String called;
-  final ValueChanged<int> onVariantPositionChanged;
-  const ProductListItem(this.product, this.position,
-      {this.onTap, this.onVariantPositionChanged, this.called});
+  const ProductListItem(this.list, this.position, {this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTap,
-      title: Wrap(children: [
-        Card(
-          child: Text('${product.urlSymbol}',
-              style: GoogleFonts.josefinSans(fontSize: 22),
-              textAlign: TextAlign.center),
+    return Container(
+      color: HexColor("#a0bcd6"),
+      alignment: Alignment.center,
+      child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        leading: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 40,
+            minHeight: 40,
+            maxWidth: 40,
+            maxHeight: 40,
+          ),
+          child: Image.asset("./assets/image/Cryptocurrency_Logo.png",
+              fit: BoxFit.cover),
         ),
-      ]),
+        title: Text("${list[position].urlSymbol}"),
+        subtitle: Text("${list[position].description}"),
+        onTap: onTap,
+      ),
     );
   }
 }

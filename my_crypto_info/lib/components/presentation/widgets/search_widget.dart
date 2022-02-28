@@ -24,6 +24,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         children: [
           Expanded(
             child: TextField(
+                key: Key("valueText"),
                 style: TextStyle(fontSize: 18),
                 onChanged: (text) {
                   setState(() {
@@ -39,7 +40,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(0),
                     border: OutlineInputBorder(borderSide: BorderSide.none),
-                    hintText: "Search for artwork",
+                    hintText: "Enter currency pair",
                     prefixIcon: Icon(Icons.search, color: Colors.grey[700]))),
           ),
           Visibility(
@@ -58,6 +59,7 @@ class _SearchWidgetState extends State<SearchWidget> {
           Visibility(
               visible: _hasText,
               child: TextButton(
+                  key: Key("searchKey"),
                   onPressed: () {
                     onPressed(controller.text);
                   },

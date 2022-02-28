@@ -3,5 +3,5 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'components/my_app.dart';
 
 void main() async {
-  runApp( MyApp());
+  runApp( Phoenix(child: MyApp()));
 }
