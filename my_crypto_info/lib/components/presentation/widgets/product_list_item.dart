@@ -11,9 +11,11 @@ class ProductListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: HexColor("#a0bcd6"),
+      color: HexColor("#a0bcd9"),
       alignment: Alignment.center,
       child: ListTile(
+        // selected: false,
+        // selectedTileColor: Colors.amber,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         leading: ConstrainedBox(
           constraints: BoxConstraints(
