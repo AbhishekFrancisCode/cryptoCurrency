@@ -2,6 +2,7 @@ import 'package:cryptodata/components/data/models/ticker.dart';
 import 'package:cryptodata/components/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 class SearchListItem extends StatelessWidget {
   final Ticker search;
   final String searchTerm;
@@ -11,8 +12,6 @@ class SearchListItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-        //height: MediaQuery.of(context).size.height,
-        // color: Colors.amber,
         child: Column(children: [
       Padding(
         padding: const EdgeInsets.all(15.0),
@@ -20,6 +19,7 @@ class SearchListItem extends StatelessWidget {
           leading: Text(
             '${searchTerm.toUpperCase()}',
             style: GoogleFonts.josefinSans(
+              textStyle: TextStyle(color: HexColor("#a0bcd6"), letterSpacing: .5),
                 fontSize: 52, fontWeight: FontWeight.bold),
             textAlign: TextAlign.left,
           ),
@@ -48,7 +48,7 @@ class SearchListItem extends StatelessWidget {
                       Text(
                         '\$ ${search.open}',
                         style: GoogleFonts.josefinSans(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                            fontSize: 24, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ]),
@@ -61,14 +61,14 @@ class SearchListItem extends StatelessWidget {
                       Text(
                         '\$ ${search.high}',
                         style: GoogleFonts.josefinSans(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ]),
                     minVerticalPadding: 5.0,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: ListTile(
                     leading: Column(children: [
                       Text(
@@ -79,7 +79,7 @@ class SearchListItem extends StatelessWidget {
                       Text(
                         '\$ ${search.low}',
                         style: GoogleFonts.josefinSans(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ]),
                     trailing: Column(children: [
@@ -91,13 +91,13 @@ class SearchListItem extends StatelessWidget {
                       Text(
                         '\$ ${search.last}',
                         style: GoogleFonts.josefinSans(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ]),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:15),
+                  padding: const EdgeInsets.only(top:10),
                   child: ListTile(
                       leading: Column(children: [
                     Text(
@@ -108,7 +108,7 @@ class SearchListItem extends StatelessWidget {
                     Text(
                       '${search.volume}',
                       style: GoogleFonts.josefinSans(
-                          fontSize: 32, fontWeight: FontWeight.bold),
+                          fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ])),
                 ),

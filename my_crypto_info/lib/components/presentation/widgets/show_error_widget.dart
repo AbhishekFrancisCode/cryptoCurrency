@@ -14,7 +14,7 @@ class ShowErrorWidget extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.all(8),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Text(
             message,

@@ -40,7 +40,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(0),
                     border: OutlineInputBorder(borderSide: BorderSide.none),
-                    hintText: "Search for cryptocurrency pair { btcusd }",
+                    hintText: "Enter currency pair",
                     prefixIcon: Icon(Icons.search, color: Colors.grey[700]))),
           ),
           Visibility(

@@ -1,12 +1,13 @@
 import 'package:cryptodata/components/data/models/order_book.dart';
 import 'package:cryptodata/components/presentation/bloc/order_book_bloc.dart';
+import 'package:cryptodata/components/presentation/widgets/empty_data_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/order_book_list.dart';
 import 'package:cryptodata/components/presentation/widgets/progress_indicator_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/show_error_widget.dart';
 import 'package:cryptodata/core/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:async';
+import 'package:hexcolor/hexcolor.dart';
 
 class MyOrderBook extends StatefulWidget {
   final String searchTerm;
@@ -55,11 +56,11 @@ class _OrderBookState extends State<MyOrderBook> {
                               child: _isVisible == false
                                   ? Text("VIEW ORDER BOOK",
                                       style: TextStyle(
-                                        color: config.brandColor,
+                                        color: HexColor("#a0bcd6"),
                                       ))
                                   : Text("HIDE ORDER BOOK",
                                       style: TextStyle(
-                                        color: config.brandColor,
+                                        color: HexColor("#a0bcd6"),
                                       ))),
                         ),
                       ),
@@ -96,16 +97,8 @@ class _OrderBookState extends State<MyOrderBook> {
                 context.read<OrderBookBloc>().add(OnOrderBook(searchTerm)),
           );
         }
-        return Container();
+        return EmptyDataWidget("Looding");
       }),
     );
-  }
-
-  getOrderBookListItem(BuildContext context, OrderBook product,
-      String searchTerm, int index) async {
-    return [
-      OrderBookListItem(product, searchTerm, index),
-      context.read<OrderBookBloc>().add(OnRefreshProductList(searchTerm))
-    ];
   }
 }

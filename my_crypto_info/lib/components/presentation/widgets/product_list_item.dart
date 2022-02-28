@@ -1,5 +1,6 @@
 import 'package:cryptodata/components/data/models/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ProductListItem extends StatelessWidget {
   final position;
@@ -10,7 +11,7 @@ class ProductListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue[100],
+      color: HexColor("#a0bcd6"),
       alignment: Alignment.center,
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

@@ -1,26 +1,19 @@
-// import 'package:bloc_test/bloc_test.dart';
-// import 'package:cryptodata/components/presentation/bloc/search_bloc.dart';
-// import 'package:flutter_test/flutter_test.dart';
+import 'package:cryptodata/components/presentation/pages/quick_search_list_page.dart';
+import 'package:cryptodata/components/presentation/widgets/search_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-// void main() {
-//   group('SearchBloc', () {
-//     SearchBloc searchBloc;
-//     setUp(() {
-//       searchBloc = SearchBloc();
-//     });
-//     tearDown(() {
-//       searchBloc.close();
-//     });
+void main() {
+  testWidgets("MyWidget has a title and message", (WidgetTester tester) async {
+    final addField = find.byKey(ValueKey("valueText"));
+    final searchButton = find.byKey(ValueKey("searchKey"));
 
-//     test("intial state", () {
-//       expect(SearchLoading, SearchLoading);
-//     });
+    await tester.pumpWidget(MaterialApp(home: MyCryptoListPage()));
+    await tester.pumpWidget(SearchWidget());
+    await tester.enterText(addField, "btcusd");
+    await tester.tap(searchButton);
+    await tester.pump();
 
-//     blocTest(
-//       "the bloc should emit a SearchState(SearchLoaded state)when getCryptoBySearch is called",
-//       build: () => searchBloc ,
-//       act: (bloc) => bloc.,
-//       expect: null,
-//     );
-//   });
-// }
+    expect(find.text("btcusd"), findsOneWidget);
+  });
+}

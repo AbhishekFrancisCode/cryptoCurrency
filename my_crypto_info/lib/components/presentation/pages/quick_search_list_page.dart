@@ -4,9 +4,9 @@ import 'package:cryptodata/components/presentation/widgets/product_list_item.dar
 import 'package:cryptodata/components/presentation/widgets/progress_indicator_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/search_widget.dart';
 import 'package:cryptodata/components/presentation/widgets/show_error_widget.dart';
-import 'package:cryptodata/core/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../../utils/utils.dart';
 
@@ -16,10 +16,9 @@ class MyCryptoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Crypto Data"),
-        backgroundColor: config.brandColor,
+        backgroundColor: HexColor("#a0bcd6"),
       ),
       body: Column(children: [
         Expanded(
@@ -41,17 +40,39 @@ class MyCryptoListPage extends StatelessWidget {
                         },
                       ),
                     ),
+                    Container(
+                      height: 150,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: SizedBox(
+                          height: 100,
+                          child: Image.asset(
+                              "./assets/image/Cryptocurrency-graph.png"),
+                        ),
+                      ),
+                    ),
+                    Text("Enter a currency pair to load data"),
+                    Divider(
+                      thickness: 10.0,
+                      color: HexColor("#a0bcd6"),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left:10),
+                      alignment: Alignment.centerLeft,
+                      child: Text("Quick Links"),
+                    ),
                     Expanded(
                         child: state.isLoading
                             ? ProgressIndicatorWidget()
                             : Container(
-                              padding: EdgeInsets.all(8),
-                              child: GridView.builder(
+                                padding: EdgeInsets.all(8),
+                                child: GridView.builder(
                                   itemCount: count,
                                   itemBuilder: (context, index) =>
                                       ProductListItem(crypto, index,
                                           onTap: () => _onCurrencyClicked(
-                                              context, crypto[index].urlSymbol)),
+                                              context,
+                                              crypto[index].urlSymbol)),
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
@@ -60,7 +81,7 @@ class MyCryptoListPage extends StatelessWidget {
                                     mainAxisSpacing: 8,
                                   ),
                                 ),
-                            )),
+                              )),
                   ],
                 );
               } else if (state is CryptoListError) {
@@ -79,7 +100,7 @@ class MyCryptoListPage extends StatelessWidget {
   }
 
   _onCurrencyClicked(BuildContext context, String crypto) async {
-    final route = Utils.getRoute(context, MySearchPage(crypto));
+    final route = Utils.getRoute1(context, MySearchPage(crypto));
     await Navigator.push(context, route);
     context.read<CryptoListBloc>().add(OnRefreshCryptoList());
   }

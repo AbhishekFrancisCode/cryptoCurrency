@@ -24,6 +24,7 @@ class ApiClient {
   }
 
   Future<ApiResponse<Ticker>> getCryptoBySearch(String q) async {
+    q.toLowerCase();
     final baseUrl = config.baseUrl;
     final url = "${baseUrl}ticker/$q";
     final response = await _getResponse(url);
@@ -37,6 +38,7 @@ class ApiClient {
   }
 
   Future<ApiResponse<OrderBook>> getCryptoOrderBook(String q) async {
+    q.toLowerCase();
     final baseUrl = config.baseUrl;
     final url = "${baseUrl}order_book/$q";
     final response = await _getResponse(url);

@@ -32,6 +32,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "avatar_glow",
+      "rootUri": "file:///D:/Software%20files/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "bloc",
       "rootUri": "file:///D:/Software%20files/flutter/.pub-cache/hosted/pub.dartlang.org/bloc-7.2.1",
       "packageUri": "lib/",
@@ -300,6 +306,12 @@
       "rootUri": "file:///D:/Software%20files/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "hexcolor",
+      "rootUri": "file:///D:/Software%20files/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-2.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "html",
@@ -926,7 +938,7 @@
       "languageVersion": "2.10"
     }
   ],
-  "generated": "2022-02-28T06:32:41.278541Z",
+  "generated": "2022-02-28T14:14:59.178805Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

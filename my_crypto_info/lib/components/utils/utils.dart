@@ -43,9 +43,13 @@ class Utils {
       BuildContext context, StatelessWidget widget) {
     return MaterialPageRoute(builder: (context) => widget);
   }
+   static MaterialPageRoute getRoute1(
+      BuildContext context, StatefulWidget widget) {
+    return MaterialPageRoute(builder: (context) => widget);
+  }
 
   static navigateToPage(BuildContext context, Widget widget) {
-    final route = Utils.getRoute(context, widget);
+    final route = Utils.getRoute1(context, widget);
     Navigator.push(context, route);
   }
 
